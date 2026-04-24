@@ -51,9 +51,6 @@ jobs:
     needs: Testing
     runs-on: ubuntu-latest
     steps:
-      - name: Debug files
-        run: ls -la
-
       - name: upload image to ECR
         uses: appleboy/docker-ecr-action@master
         with:
@@ -64,7 +61,7 @@ jobs:
           region: ${{ ENV.Aws_REGION }}
           tags: latest,${{ github.run_number }}
           daemon_off: false
-          dockerfile: ./Dockerfile
+          dockerfile: Dockerfile
           context: ./
 
   DeployToEKS:
